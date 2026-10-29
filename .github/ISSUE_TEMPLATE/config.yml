@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Report a Security Vulnerability
+    url: https://github.com/HikariTechLab/.github/blob/main/SECURITY.md
+    about: Please do not file public issues for security vulnerabilities or guardrail bypasses. Follow our private disclosure policy.
+  - name: 🧭 Organization Architecture & Standards
+    url: https://github.com/HikariTechLab/.github/blob/main/CONTRIBUTING.md
+    about: Review HikariTechLab's Spec-First workflow, 3-Tier Verification Pyramid, and PR-only infrastructure standards.

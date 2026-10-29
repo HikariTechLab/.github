@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="100%" height="100%" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070A12"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#090D16"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0C2E3E" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+    </linearGradient>
+
+    <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+
+    <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" opacity="0.45"/>
+    </pattern>
+
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1280" height="420" rx="16" fill="url(#bgGrad)"/>
+  <rect width="1280" height="420" rx="16" fill="url(#dotGrid)"/>
+  <rect x="0" y="0" width="1280" height="4" rx="2" fill="url(#accentLine)"/>
+
+  <!-- Header Section -->
+  <g transform="translate(48, 42)">
+    <rect x="0" y="0" width="168" height="28" rx="14" fill="#0F172A" stroke="#38BDF8" stroke-width="1.2"/>
+    <text x="84" y="18" fill="#38BDF8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1.2">HIKARITECH.CO</text>
+
+    <text x="0" y="68" fill="#F8FAFC" font-size="36" font-weight="800" letter-spacing="0.3">HikariTechLab <tspan fill="#64748B" font-weight="500" font-size="26">光テックラボ</tspan></text>
+    <text x="0" y="100" fill="#94A3B8" font-size="16" font-weight="500">Deterministic Agentic Engineering • Autonomous In-VPC FinOps • Zero-Trust GCP Cloud Foundations</text>
+
+    <!-- Status Pill Right -->
+    <g transform="translate(920, 32)">
+      <rect width="264" height="54" rx="10" fill="#1E293B" fill-opacity="0.75" stroke="#334155" stroke-width="1.2"/>
+      <circle cx="22" cy="27" r="5" fill="#34D399"/>
+      <text x="38" y="23" fill="#F8FAFC" font-size="12" font-weight="700">CORE ENGINEERING THESIS</text>
+      <text x="38" y="40" fill="#94A3B8" font-size="11" font-family="monospace">Probabilistic AI × Deterministic Gates</text>
+    </g>
+  </g>
+
+  <!-- Three Pillar Cards -->
+  <!-- Pillar 1: Agentic Harnesses -->
+  <g transform="translate(48, 172)" filter="url(#shadow)">
+    <rect width="376" height="204" rx="12" fill="url(#cardGrad1)" stroke="#6366F1" stroke-width="1.3"/>
+    <text x="22" y="34" fill="#818CF8" font-size="11.5" font-weight="700" letter-spacing="1">01 // AGENTIC ENGINEERING HARNESSES</text>
+    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Spec-Driven &amp; Sentinel-Guarded</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Multi-Model ADK 2.0 &amp; Temporal Workflows</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• SHA-256 Locked Gherkin Behavioral Contracts</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Blind Holdout @sentinel Verification Pyramid</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Auto Loop 3 SKILL.md Evolution &amp; CAS Undo</text>
+    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
+    <text x="32" y="183" fill="#818CF8" font-size="11" font-family="monospace">repos: bansho • agentic-harness • bansho-demo-api</text>
+  </g>
+
+  <!-- Pillar 2: Autonomous FinOps & Verified SQL -->
+  <g transform="translate(452, 172)" filter="url(#shadow)">
+    <rect width="376" height="204" rx="12" fill="url(#cardGrad2)" stroke="#38BDF8" stroke-width="1.3"/>
+    <text x="22" y="34" fill="#38BDF8" font-size="11.5" font-weight="700" letter-spacing="1">02 // IN-VPC FINOPS &amp; VERIFIED DATA AI</text>
+    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Zero-Mutation &amp; Provable Savings</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Customer-Hosted Vertex AI &amp; ADK Agents</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• sqlglot Read-Only AST Whitelist &amp; Rewrites</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• $0 Dry-Run Savings + XOR Checksum Proofs</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Prompt-Injection &amp; Session-Poisoning Guards</text>
+    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
+    <text x="32" y="183" fill="#38BDF8" font-size="11" font-family="monospace">repos: greyhound-gcp • job-search-agent</text>
+  </g>
+
+  <!-- Pillar 3: Sovereign Cloud & Applied Systems -->
+  <g transform="translate(856, 172)" filter="url(#shadow)">
+    <rect width="376" height="204" rx="12" fill="url(#cardGrad3)" stroke="#34D399" stroke-width="1.3"/>
+    <text x="22" y="34" fill="#34D399" font-size="11.5" font-weight="700" letter-spacing="1">03 // ZERO-TRUST CLOUD &amp; SYSTEMS</text>
+    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Declarative GCP &amp; Product Craft</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Layered Terraform Org Foundation (PR-Only)</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Shared VPC Per-Subnet Lanes &amp; Deny-All Posture</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Strict Multi-Tenant Client State Isolation</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• High-Signal TypeScript / Next.js Interfaces</text>
+    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
+    <text x="32" y="183" fill="#34D399" font-size="11" font-family="monospace">repos: hikari-org-infra • aftermark</text>
+  </g>
+</svg>

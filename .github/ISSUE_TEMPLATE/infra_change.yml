@@ -1,0 +1,49 @@
+name: "☁️ Declarative Infrastructure / FinOps Change"
+description: "Propose a PR-only Terraform change, client stack, or GCP FinOps optimization"
+title: "[INFRA] "
+labels: ["infrastructure", "terraform"]
+body:
+  - type: dropdown
+    id: layer
+    attributes:
+      label: "Target Infrastructure Layer"
+      description: "Select the state layer affected in hikari-org-infra."
+      options:
+        - "Layer 0 — bootstrap/ (Org foundation, folders, Shared VPC, logging, org policies)"
+        - "Layer 1 — apps/<app>/<env>/ (First-party app stack in hikari-{env}-app)"
+        - "Layer 1 — clients/<client>/<env>/ (Isolated client/tenant stack)"
+        - "FinOps / BigQuery Cost & Slot Optimization"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: "Target Environment"
+      options:
+        - "nonprod"
+        - "prd"
+        - "Common / Organization-Wide"
+    validations:
+      required: true
+
+  - type: textarea
+    id: intent
+    attributes:
+      label: "Architectural Intent & Resources"
+      description: "Describe the GCP resources, IAM bindings, budgets, or policies to add/modify and why."
+      placeholder: "e.g., Provision dedicated runtime SA, BigQuery dataset, and monthly budget alert for..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: governance
+    attributes:
+      label: "hikari-org-infra Governance Checklist"
+      options:
+        - label: "Changes will be applied strictly via PR + `make plan` / `make apply` (zero console drift)."
+          required: true
+        - label: "All resources carry mandatory cost-attribution `default_labels` (`app`, `environment`, `component`, `managed_by`)."
+          required: true
+        - label: "IAM bindings use Cloud Identity security groups or dedicated least-privilege Service Accounts (no SA keys, default SAs disabled)."
+          required: true

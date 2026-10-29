@@ -1,0 +1,44 @@
+name: "🐛 Bug / Regression Report"
+description: "Report a deterministic bug, test failure, or guardrail regression"
+title: "[BUG] "
+labels: ["bug"]
+body:
+  - type: input
+    id: component
+    attributes:
+      label: "Affected Component / Module"
+      description: "Which package, agent node, CLI command, or service is affected?"
+      placeholder: "e.g., app/harness_git.py, packages/cli, sql_verifier"
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: "Deterministic Reproduction Steps"
+      description: "Exact command, input payload, or test invocation that triggers the failure."
+      placeholder: |
+        1. Run `uv run pytest tests/unit/...` (or `./bansho code "..."`)
+        2. Observe failure in ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_vs_actual
+    attributes:
+      label: "Expected vs. Actual Behavior"
+      description: "What should happen according to the spec vs. what actually occurred (include sanitized logs/tracebacks)."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tier
+    attributes:
+      label: "Verification Tier Where Detected"
+      options:
+        - "Tier 1 — Unit / Static Type / Lint"
+        - "Tier 2 — Locked Behavioral Spec (tests/specs/)"
+        - "Tier 3 — Holdout Sentinel (sentinels/) / Security Guardrail"
+        - "Runtime / Control Tower / CI"
+    validations:
+      required: true

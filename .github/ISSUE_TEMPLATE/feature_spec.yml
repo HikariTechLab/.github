@@ -1,0 +1,53 @@
+name: "🏯 Spec-Driven Feature / Agentic Demand"
+description: "Propose a feature or agentic capability with a Gherkin behavioral contract and @scope boundary"
+title: "[FEAT] "
+labels: ["enhancement", "spec-driven"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Define the behavioral contract before implementation. Specifications drafted here can be executed directly via `./bansho code` or our agentic harnesses.
+
+  - type: input
+    id: demand
+    attributes:
+      label: "Feature Demand (One-Line Intent)"
+      description: "Concise statement of the capability or behavior to implement."
+      placeholder: "e.g., Reject checkout requests when amount_cents <= 0 with 400 INVALID_AMOUNT"
+    validations:
+      required: true
+
+  - type: input
+    id: scope
+    attributes:
+      label: "Allowed Scope (@scope)"
+      description: "Files or directories that may be modified to satisfy this specification (must be a subset of skill.yaml allowed_scope where applicable)."
+      placeholder: "e.g., src/checkout_api/routes.py, src/checkout_api/service.py"
+    validations:
+      required: true
+
+  - type: textarea
+    id: gherkin_spec
+    attributes:
+      label: "Behavioral Contract (Gherkin Given / When / Then)"
+      description: "Executable acceptance criteria for Tier 2 verification."
+      render: gherkin
+      value: |
+        @scope(src/...)
+        Feature: <Feature Name>
+
+          Scenario: <Primary happy or rejection path>
+            Given <initial context / state>
+            When <action or request>
+            Then <deterministic expected outcome>
+    validations:
+      required: true
+
+  - type: textarea
+    id: guardrails
+    attributes:
+      label: "Security, FinOps & Invariant Considerations"
+      description: "Any prompt-injection boundaries, AST constraints, quota limits, or out-of-sample @sentinel invariants that must hold."
+      placeholder: "- Must not mutate existing tables\n- Must preserve backward compatibility on response schema"
+    validations:
+      required: false
