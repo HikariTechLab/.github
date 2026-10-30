@@ -1,6 +1,6 @@
 # Contributing to HikariTechLab
 
-Thank you for contributing to **HikariTechLab** (`hikaritech.co`). Whether you are operating an agentic harness like **[`bansho`](https://github.com/HikariTechLab/bansho)**, developing an autonomous ADK agent like **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** or **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)**, or authoring declarative Terraform in **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)**, all contributions follow our deterministic engineering standards.
+Thank you for contributing to **HikariTechLab** (`hikaritech.co`). Whether you are operating an agentic harness like **[`bansho`](https://github.com/HikariTechLab/bansho)**, building FinOps and data intelligence tooling like **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** or **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)**, or authoring declarative Terraform in **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)**, all contributions follow our deterministic engineering standards.
 
 ---
 
@@ -25,7 +25,7 @@ Before requesting review or promoting a candidate checkpoint, verify your work a
 
 | Tier | Purpose | Verification Command Examples |
 | :--- | :--- | :--- |
-| **Tier 1: Component, Lint & Types** | Fast unit tests, formatting, and strict static analysis; new logic requires unit tests in `test_scope`. | `uv run pytest tests/unit`<br>`ruff check && ruff format --check`<br>`bun run check && bun run lint && bun test`<br>`terraform fmt -check -recursive && terraform validate` |
+| **Tier 1: Component, Lint & Types** | Fast unit tests, formatting, and strict static analysis; new logic requires unit tests in `test_scope`. | `uv run pytest tests/unit`<br>`ruff check && ruff format --check`<br>`cargo fmt --all -- --check && cargo clippy --all-targets -- -D warnings && cargo test`<br>`npm --prefix packages/<pkg> test`<br>`terraform fmt -check -recursive && terraform validate` |
 | **Tier 2: Behavioral Spec (`tests/specs/`)** | Proves the `Given / When / Then` contract transitions cleanly from Red to Green. | `uv run pytest tests/specs -v`<br>`agents-cli eval run` |
 | **Tier 3: Holdout Sentinels & Policy Gates** | Ensures zero regressions across security, auth, billing, and data-equivalence invariants. | `uv run pytest sentinels -v`<br>`just check` |
 
@@ -33,7 +33,11 @@ Before requesting review or promoting a candidate checkpoint, verify your work a
 
 ## 3. Toolchain Standards by Stack
 
-### Python & Google Cloud ADK Repositories (`bansho`, `greyhound-gcp`, `job-search-agent`, `agentic-harness`)
+### Rust CLI & FinOps Engines (`greyhound-gcp`)
+- **Formatting & Linting**: Enforce `cargo fmt --all -- --check` and `cargo clippy --all-targets -- -D warnings` with zero warnings allowed.
+- **Testing & Read-Only Safety**: Run `cargo test --all-targets` offline; ensure any live GCP telemetry code paths pass through `GcpAuthClient::ensure_readonly_request` and use strictly read-only OAuth scopes.
+
+### Python & Google Cloud ADK Repositories (`bansho`, `job-search-agent`, `agentic-harness`)
 - **Package & Environment Management**: Always use [`uv`](https://docs.astral.sh/uv/) (`uv sync`, `uv run ...`) or `agents-cli install`. Never run global `pip install`.
 - **Code Style & Typing**:
   - Format and lint with `ruff` (`uv run ruff check` and `uv run ruff format --check`).
@@ -41,12 +45,12 @@ Before requesting review or promoting a candidate checkpoint, verify your work a
 - **Agent Security Callbacks**:
   - Any tool interacting with external data sources, SQL engines, or subprocesses must enforce `shell=False`, sanitize untrusted outputs with XML delimiters, and validate AST/arguments in `before_tool_callback`.
 
-### TypeScript, CLI & Web Applications (`bansho/packages/*`, `aftermark`)
-- **Tooling**: Use `bun` (for `aftermark`) or `npm --prefix packages/<pkg>` (for `bansho` workspaces) as documented in the repository `README.md`.
+### TypeScript, CLI & Control Tower UI (`bansho/packages/*`)
+- **Tooling**: Use `npm --prefix packages/<pkg>` (for `bansho` workspaces) as documented in the repository `README.md`.
 - **Quality Gates**:
-  - Strict TypeScript compilation (`tsc --noEmit` / `bun run check`).
+  - Strict TypeScript compilation (`tsc --noEmit`).
   - Formatting and linting via `biome` or `eslint`.
-  - Unit and component tests via `vitest` or `bun test`.
+  - Unit and component tests via `vitest`.
 
 ### Terraform & Google Cloud Infrastructure (`hikari-org-infra`)
 - **Layered State Discipline**:

@@ -18,7 +18,7 @@
 
 ## 3-Tier Verification Pyramid
 
-- [ ] **Tier 1 — Component, Lint & Static Types**: Unit tests (`pytest tests/unit` / `vitest` / `bun test`), formatter (`ruff` / `biome` / `terraform fmt`), and type checker (`pyright` / `ty` / `tsc`) pass cleanly.
+- [ ] **Tier 1 — Component, Lint & Static Types**: Unit tests (`pytest tests/unit` / `cargo test` / `vitest`), formatter (`ruff` / `cargo fmt` / `biome` / `terraform fmt`), and type/lint checker (`pyright` / `cargo clippy` / `tsc`) pass cleanly.
 - [ ] **Tier 2 — Behavioral Spec (`tests/specs/` or Eval Suite)**: Executable Gherkin / ADK evaluation suite passes (Red $\rightarrow$ Green verified).
 - [ ] **Tier 3 — Holdout Sentinels & Policy Gates**: Out-of-sample `@sentinel` suite (`pytest sentinels`) or `make plan` / AST validation passes with zero regressions.
 

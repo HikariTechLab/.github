@@ -32,12 +32,10 @@ We build systems around a single architectural conviction:
 | Repository | Domain | Architecture & Key Guarantees | Stack |
 | :--- | :--- | :--- | :--- |
 | **[`bansho`](https://github.com/HikariTechLab/bansho)**<br>*(番所 — The Watchtower)* | **Spec-Driven Agentic Coding Engine** | 3-Loop Self-Improving Flywheel (`bansho-spec` → `bansho-worker` → `bansho-evolve` / AEOS 3), 3-Tier Verification Pyramid (Unit + SHA-256 Locked Gherkin + Blind `@sentinel` suite), Multi-Model FinOps Router, and stateless Compare-and-Swap (CAS) Undo tokens. | Python, Google ADK 2.0, FastAPI, TypeScript CLI, React 19, OpenTelemetry |
-| **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** | **Autonomous In-VPC BigQuery FinOps Agent** | Customer-hosted SQL optimization & FinOps arbitrage agent. Proves exact `$0` `--dry_run` byte savings and mathematical data equivalence (`EXCEPT DISTINCT` + `FARM_FINGERPRINT` XOR checksums) under a strict Zero-Mutation `sqlglot` AST whitelist. | Python, Google ADK, Vertex AI, BigQuery, `sqlglot` |
+| **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** | **GCP IaC & BigQuery FinOps CLI** | Fast, offline-first Rust FinOps engine for Terraform, Terragrunt & `plan.json` (automatic SUDs, Spot, live Cloud Monitoring P95 rightsizing) and BigQuery workloads (SQL/SQLX AST scanner & rewriter, `$0` `dryRun` byte proofs, `EXCEPT DISTINCT` equivalence SQL, logical vs. physical storage compression audit, and Edition slot autoscaling simulator). | Rust, Terraform / HCL, BigQuery, Cloud Monitoring, Docker |
 | **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)** | **Zero-Trust GCP Organization Foundation** | Declarative Terraform source of truth for `hikaritech.co`. Layered GCS state (`bootstrap/`, `apps/`, `clients/`), Shared VPC per-subnet isolation (`europe-west1`), default-deny firewall posture, 365-day org audit sink, and strict multi-tenant client isolation. | Terraform, Google Cloud Platform, Cloud Identity, BigQuery Billing |
 | **[`agentic-harness`](https://github.com/HikariTechLab/agentic-harness)** | **Durable Unattended Coding Control Plane** | Orchestrates unattended issue-to-PR coding runs inside ephemeral Docker sandboxes using Temporal workflows, calibrated decision-model diff gating (`fast_track` vs `senior_review`), and durable human-in-the-loop merge gates. | Python 3.13, Temporal, Docker, OpenRouter / Jev, Aider |
 | **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)** | **Autonomous Opportunity Intelligence Agent** | Discovers, deduplicates, sanitizes (`<untrusted_job_description>`), and scores worldwide remote Cloud/SRE/Platform/AI Infrastructure roles on a `0–100` rubric into BigQuery & Looker Studio with hard API quota guardrails. | Python, Google ADK, Vertex AI (`gemini-3.8-flash`), BigQuery |
-| **[`bansho-demo-api`](https://github.com/HikariTechLab/bansho-demo-api)** | **Reference 20% Business Cartridge** | Target microservice demonstrating Bansho's repository guardrail contract: `skill.yaml` manifest, evolvable `skills/<domain>/SKILL.md` domain memory, visible Gherkin specs (`tests/specs/`), and hidden holdout invariants (`sentinels/`). | Python, FastAPI, Pytest, Gherkin |
-| **[`aftermark`](https://github.com/HikariTechLab/aftermark)** | **Setup-First Trading Journal** | Rule-and-setup-first trading journal for Hyperliquid. Links live fills from the public Hyperliquid Info API to explicit setup rules, invalidation criteria, and post-trade notes. | Bun, Next.js, TypeScript, Tailwind CSS, Drizzle, Postgres |
 
 ---
 
@@ -64,13 +62,13 @@ flowchart LR
 
 ### 1. The 3-Tier Verification Pyramid & Sentinel Blindness
 We never trust an agent to grade its own homework. Repositories managed by our harnesses separate verification into three distinct tiers:
-- **Tier 1 — Component & Unit (`test_scope`)**: Fast deterministic unit tests, static typing, and syntax validation (`pytest`, `vitest`, `bun test`, `terraform validate`).
+- **Tier 1 — Component & Unit (`test_scope`)**: Fast deterministic unit tests, static typing, and syntax validation (`pytest`, `vitest`, `cargo test`, `terraform validate`).
 - **Tier 2 — Locked Behavioral Spec (`tests/specs/**`)**: Formal `Given / When / Then` Gherkin specifications compiled and locked with a **SHA-256 digest** before the worker agent runs.
 - **Tier 3 — Blind Holdout Sentinels (`sentinels/**`)**: Out-of-sample security, billing, SLA, and architectural invariants. Our tool guardrails (`before_tool_callback`) physically block agents from reading `sentinels/**` and redact stack traces on failure—defeating Goodhart's Law by construction.
 
 ### 2. Zero-Mutation & Anti-Prompt-Injection Defense
-Every agent handling external telemetry or database queries runs behind deterministic security plugins:
-- **AST-Level Read-Only Whitelisting**: In [`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp), every SQL statement is parsed via `sqlglot` (`dialect="bigquery"`) to strip 100% of SQL comments, reject any non-`SELECT` or mutating subtree, and lock `QueryJobConfig` with a 1 GiB circuit breaker (`maximum_bytes_billed`).
+Every FinOps engine and autonomous agent handling external telemetry or database queries runs behind deterministic security guardrails:
+- **Read-Only HTTP & SQL AST Whitelisting**: In [`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp), static IaC and SQL/SQLX scans run 100% offline with zero credentials, while live telemetry and `$0` BigQuery dry-run proofs are enforced by a runtime HTTP mutation guard (`GcpAuthClient::ensure_readonly_request`), read-only OAuth scopes, and strict SQL AST validation.
 - **Untrusted Input Delimiting & Session-Poisoning Handshakes**: External inputs (job descriptions, query logs, test outputs) are sanitized, wrapped in explicit XML boundary tags, and checked by `on_user_message_callback` → `before_run_callback` guards before entering model context.
 
 ### 3. Self-Improving Domain Memory (AEOS 3) & Stateless Rollback
@@ -89,9 +87,9 @@ In [`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra), the 
 | Layer | Technologies & Standards |
 | :--- | :--- |
 | **Agentic & AI Frameworks** | Google Agent Development Kit (**ADK 2.0**), Vertex AI (`gemini-3.8-flash`, `gemini-2.5-pro`), LiteLLM (Claude Sonnet 4, GPT-4.1, OpenRouter), Temporal Workflows |
-| **Cloud & Infrastructure** | Google Cloud Platform (`europe-west1`), Terraform (Layered GCS State), Shared VPC, Cloud Run, Vertex AI Agent Engine, Secret Manager, Cloud Identity |
-| **Data, FinOps & Observability** | BigQuery (`INFORMATION_SCHEMA`, Dry-Run & Equivalence Proofs), `sqlglot`, Looker Studio, OpenTelemetry, JSONL FinOps Ledgers |
-| **Languages & Tooling** | Python 3.12 / 3.13 (`uv`, `ruff`, `pyright`, `pytest`, `pydantic`), TypeScript (`bun`, Node.js, `@clack/prompts`, `biome`, `vitest`), React 19, Next.js, Tailwind CSS |
+| **Cloud & Infrastructure** | Google Cloud Platform (`europe-west1`), Terraform / Terragrunt (Layered GCS State), Shared VPC, Cloud Run, Vertex AI Agent Engine, Secret Manager, Cloud Identity |
+| **Data, FinOps & Observability** | BigQuery (`INFORMATION_SCHEMA`, `$0` Dry-Run & Equivalence Proofs, Edition Slot Simulation), Cloud Monitoring, Looker Studio, OpenTelemetry, JSONL FinOps Ledgers |
+| **Languages & Tooling** | Rust 1.85+ (`cargo`, `clippy`, static `musl` binaries), Python 3.12 / 3.13 (`uv`, `ruff`, `pyright`, `pytest`, `pydantic`), TypeScript (`npm`, Node.js, `@clack/prompts`, `biome`, `vitest`), React 19, Tailwind CSS |
 
 ---
 

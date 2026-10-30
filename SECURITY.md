@@ -29,11 +29,10 @@ All repositories and agents across `HikariTechLab` must uphold the following man
 - **SHA-256 Spec Locking**: Behavioral specifications (`tests/specs/**`) are hashed with SHA-256 prior to worker execution; any modification to a locked spec test during an agent run immediately aborts and rejects the candidate.
 
 ### 2. Zero-Mutation & Anti-Prompt-Injection Guarantees
-- **AST-Validated Database Access**: Agents querying analytical stores (such as [`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp) on BigQuery) must parse every query through `sqlglot` (`dialect="bigquery"`) to:
-  1. Strip 100% of SQL comments (`comments=False`).
-  2. Enforce a single-statement read-only AST whitelist (`SELECT`, `UNION`, `INTERSECT`, `EXCEPT`).
-  3. Reject any mutating or external-access AST node (`INSERT`, `UPDATE`, `DELETE`, `MERGE`, `CREATE`, `DROP`, `ALTER`, `TRUNCATE`, `GRANT`, `REVOKE`, `EXECUTE IMMEDIATE`, `EXPORT DATA`, `EXTERNAL_QUERY`, `CALL`).
-  4. Lock hardware job configurations (`destination=None`, `create_disposition="CREATE_NEVER"`, `write_disposition="WRITE_EMPTY"`, and a hard `maximum_bytes_billed` circuit breaker).
+- **Read-Only Cloud & AST-Validated Database Access**: FinOps engines and analytical agents (such as [`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp) on GCP / BigQuery) must enforce strict non-mutation guarantees:
+  1. Static IaC and SQL/SQLX scans operate 100% offline with zero credentials and zero network calls.
+  2. Live GCP telemetry requests only read-only OAuth scopes (`cloud-platform.read-only`, `monitoring.read`, `cloud-billing.readonly`) and is gated at runtime by `GcpAuthClient::ensure_readonly_request` (rejecting any `DELETE`, `PUT`, `PATCH`, or mutating `POST`).
+  3. BigQuery SQL verification parses queries into a read-only AST (`SELECT`, `UNION`, `INTERSECT`, `EXCEPT`), strips SQL comments, rejects mutating/DDL statements, and uses `$0` dry-run jobs (`dryRun: true`) or bounded read-only metadata queries.
 - **Untrusted Input Isolation**: External telemetry (`INFORMATION_SCHEMA` logs, ATS job postings, GitHub issue bodies, test outputs) must be sanitized, scanned for prompt-injection signatures, and enclosed in explicit XML boundary tags (e.g., `<untrusted_job_description>`) before entering model prompts.
 - **Subprocess Hermeticity**: Subprocesses executed by harnesses must run with `shell=False`, validated command vectors, and secret-scrubbed environment variables.
 
