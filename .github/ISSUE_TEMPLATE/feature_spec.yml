@@ -1,53 +1,47 @@
-name: "🏯 Spec-Driven Feature / Agentic Demand"
-description: "Propose a feature or agentic capability with a Gherkin behavioral contract and @scope boundary"
+name: "🚀 Feature or AI Agent Capability Specification"
+description: "Propose a new microservice feature, IDP capability, or multi-agent workflow"
 title: "[FEAT] "
-labels: ["enhancement", "spec-driven"]
+labels: ["enhancement"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Define the behavioral contract before implementation. Specifications drafted here can be executed directly via `./bansho code` or our agentic harnesses.
-
   - type: input
-    id: demand
+    id: summary
     attributes:
-      label: "Feature Demand (One-Line Intent)"
+      label: "Feature Summary (One-Line Intent)"
       description: "Concise statement of the capability or behavior to implement."
-      placeholder: "e.g., Reject checkout requests when amount_cents <= 0 with 400 INVALID_AMOUNT"
+      placeholder: "e.g., Add /v1/fleet/clusters endpoint to hikari-status-api"
     validations:
       required: true
 
   - type: input
-    id: scope
+    id: target
     attributes:
-      label: "Allowed Scope (@scope)"
-      description: "Files or directories that may be modified to satisfy this specification (must be a subset of skill.yaml allowed_scope where applicable)."
-      placeholder: "e.g., src/checkout_api/routes.py, src/checkout_api/service.py"
+      label: "Target Repository & Module Scope"
+      description: "Which repository and directory path will this change target?"
+      placeholder: "e.g., hikari-workloads (services/hikari-status-api) or cerebro (src/orchestrator)"
     validations:
       required: true
 
   - type: textarea
-    id: gherkin_spec
+    id: acceptance_criteria
     attributes:
-      label: "Behavioral Contract (Gherkin Given / When / Then)"
-      description: "Executable acceptance criteria for Tier 2 verification."
+      label: "Acceptance Criteria (Given / When / Then)"
+      description: "Define clear, testable acceptance criteria."
       render: gherkin
       value: |
-        @scope(src/...)
         Feature: <Feature Name>
 
-          Scenario: <Primary happy or rejection path>
-            Given <initial context / state>
+          Scenario: <Primary happy or error path>
+            Given <initial state>
             When <action or request>
-            Then <deterministic expected outcome>
+            Then <expected deterministic outcome>
     validations:
       required: true
 
   - type: textarea
-    id: guardrails
+    id: security
     attributes:
-      label: "Security, FinOps & Invariant Considerations"
-      description: "Any prompt-injection boundaries, AST constraints, quota limits, or out-of-sample @sentinel invariants that must hold."
-      placeholder: "- Must not mutate existing tables\n- Must preserve backward compatibility on response schema"
+      label: "Security, Runtime & FinOps Considerations"
+      description: "Any Kyverno compliance requirements, OIDC permissions, rate limits, or cost considerations."
+      placeholder: "- Runs as non-root Distroless container (UID 65532)\n- Requires read-only IAM binding on..."
     validations:
       required: false

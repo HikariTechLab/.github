@@ -1,0 +1,50 @@
+name: Validate Organization Profile & Governance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Profile SVGs, Issue Templates & Docs
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Validate SVG Diagrams (XML Well-Formedness)
+        run: |
+          python3 -c "
+          import glob, xml.etree.ElementTree as ET
+          svgs = sorted(glob.glob('profile/assets/*.svg'))
+          assert len(svgs) >= 2, 'Expected at least 2 SVG assets in profile/assets/'
+          for svg in svgs:
+              ET.parse(svg)
+              print(f'OK SVG: {svg}')
+          "
+
+      - name: Validate Issue Templates YAML Syntax
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 -c "
+          import glob, yaml
+          for f in sorted(glob.glob('.github/ISSUE_TEMPLATE/*.yml')):
+              with open(f, 'r', encoding='utf-8') as stream:
+                  data = yaml.safe_load(stream)
+                  assert data is not None, f'Empty YAML in {f}'
+              print(f'OK YAML: {f}')
+          "
+
+      - name: Verify Required Community Health Files Exist
+        run: |
+          for f in profile/README.md README.md CONTRIBUTING.md SECURITY.md SUPPORT.md CODE_OF_CONDUCT.md .github/PULL_REQUEST_TEMPLATE.md; do
+            test -s "$f" || (echo "Missing or empty: $f" && exit 1)
+            echo "OK File: $f"
+          done

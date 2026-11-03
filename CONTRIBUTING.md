@@ -1,85 +1,62 @@
 # Contributing to HikariTechLab
 
-Thank you for contributing to **HikariTechLab** (`hikaritech.co`). Whether you are operating an agentic harness like **[`bansho`](https://github.com/HikariTechLab/bansho)**, building FinOps and data intelligence tooling like **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** or **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)**, or authoring declarative Terraform in **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)**, all contributions follow our deterministic engineering standards.
+Thank you for contributing to **HikariTech (`hikaritech.co`)**. Whether you are working on our 3-layer **Cloud-Native Internal Developer Platform** ([`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra), [`hikari-platform`](https://github.com/HikariTechLab/hikari-platform), [`hikari-workloads`](https://github.com/HikariTechLab/hikari-workloads)) or our **Autonomous AI & Multi-Agent Systems** ([`cerebro`](https://github.com/HikariTechLab/cerebro), [`agentic-harness`](https://github.com/HikariTechLab/agentic-harness), [`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)), all contributions follow the engineering standards below.
 
 ---
 
-## 1. Core Principles
+## 1. Core Engineering Principles
 
-1. **Spec Before Code**:
-   - Define the behavioral contract before writing implementation code. In repositories equipped with [`bansho`](https://github.com/HikariTechLab/bansho), draft and confirm a Gherkin specification (`Feature` / `Scenario` / `Given` / `When` / `Then`) with explicit `@scope(...)` boundaries first.
-   - Read the repository's `AGENTS.md`, `GEMINI.md`, `skill.yaml`, and `skills/<domain>/SKILL.md` before proposing changes.
-2. **Scoped Blast Radius**:
-   - Keep every Pull Request focused on a single ticket or specification.
-   - Do not modify files outside the target feature's `allowed_scope` or touch `protected_paths` unless explicitly required by an infrastructure/harness ticket.
-3. **Never Weaken Tests or Guardrails (No Reward Hacking)**:
-   - Do not delete assertions, loosen type checks, bypass `before_tool_callback` security hooks, or modify hidden `sentinels/**` to make a failing build pass.
-4. **PR-Only Infrastructure**:
-   - In [`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra), never apply manual fixes in the Google Cloud Console. Every change must be committed, planned (`make plan`), reviewed, and applied (`make apply`) from version control.
-
----
-
-## 2. The 3-Tier Verification Pyramid
-
-Before requesting review or promoting a candidate checkpoint, verify your work against all applicable tiers:
-
-| Tier | Purpose | Verification Command Examples |
-| :--- | :--- | :--- |
-| **Tier 1: Component, Lint & Types** | Fast unit tests, formatting, and strict static analysis; new logic requires unit tests in `test_scope`. | `uv run pytest tests/unit`<br>`ruff check && ruff format --check`<br>`cargo fmt --all -- --check && cargo clippy --all-targets -- -D warnings && cargo test`<br>`npm --prefix packages/<pkg> test`<br>`terraform fmt -check -recursive && terraform validate` |
-| **Tier 2: Behavioral Spec (`tests/specs/`)** | Proves the `Given / When / Then` contract transitions cleanly from Red to Green. | `uv run pytest tests/specs -v`<br>`agents-cli eval run` |
-| **Tier 3: Holdout Sentinels & Policy Gates** | Ensures zero regressions across security, auth, billing, and data-equivalence invariants. | `uv run pytest sentinels -v`<br>`just check` |
+1. **Declarative & PR-Only Changes**:
+   - Every code, GitOps manifest, Crossplane composition, or Terraform change must be proposed via Pull Request.
+   - Never apply manual mutations in the GCP Console or run imperative `kubectl edit` against Hub or Spoke clusters.
+2. **Hardened CI/CD & Container Supply Chain**:
+   - **No `:latest` Tags**: Never use `ubuntu-latest` in GitHub Actions or `:latest` in `Dockerfile` / Kubernetes manifests. Pin GitHub hosted runners explicitly (e.g., `runs-on: ubuntu-24.04`) and use immutable semantic tags or SHA digests for container images.
+   - **40-Character Commit SHA Pinning**: Every `uses:` step in `.github/workflows/*.yml` must be pinned to a full 40-character Git commit SHA (`uses: owner/action@<40-char-sha> # vX.Y.Z`) and `actions/checkout` must set `persist-credentials: false`.
+   - **Distroless Non-Root Runtimes**: Containerized workloads in [`hikari-workloads`](https://github.com/HikariTechLab/hikari-workloads) must run on hardened non-root base images (e.g., `gcr.io/distroless/nodejs22-debian12:nonroot`, UID/GID `65532`) with `allowPrivilegeEscalation: false` and `capabilities.drop: ["ALL"]`.
+3. **Scoped Blast Radius & Clean Rollback**:
+   - Keep Pull Requests focused on a single concern or layer (`L0`, `L1`, `L2`, or a single microservice/agent).
+   - Every PR must be cleanly revertible via `git revert <merge-sha>`.
 
 ---
 
-## 3. Toolchain Standards by Stack
+## 2. Standards by Platform Layer & Stack
 
-### Rust CLI & FinOps Engines (`greyhound-gcp`)
-- **Formatting & Linting**: Enforce `cargo fmt --all -- --check` and `cargo clippy --all-targets -- -D warnings` with zero warnings allowed.
-- **Testing & Read-Only Safety**: Run `cargo test --all-targets` offline; ensure any live GCP telemetry code paths pass through `GcpAuthClient::ensure_readonly_request` and use strictly read-only OAuth scopes.
+### Layer 0 — Cloud Foundation (`hikari-org-infra`)
+- **Layered State Isolation**:
+  - `bootstrap/`: Org-wide hierarchy (`Common`, `prd`, `nonprod`), Shared VPCs (`europe-west1`), 365-day org audit sink, billing export.
+  - `platform/<env>/`: GKE Hub cluster (`gke-{env}-platform-hub`), Artifact Registry, Crossplane & CI Workload Identity Federation (OIDC).
+  - `apps/<app>/<env>/` & `clients/<client>/<env>/`: Isolated per-app and per-client state prefixes, service accounts, and budgets.
+- **Validation**:
+  - Run `terraform fmt -check -recursive` and offline `terraform init -backend=false && terraform validate` across modified layers before opening a PR.
+  - Ensure all resources inherit mandatory attribution labels (`app`, `environment`, `component`, `managed_by = "terraform"`).
 
-### Python & Google Cloud ADK Repositories (`bansho`, `job-search-agent`, `agentic-harness`)
-- **Package & Environment Management**: Always use [`uv`](https://docs.astral.sh/uv/) (`uv sync`, `uv run ...`) or `agents-cli install`. Never run global `pip install`.
-- **Code Style & Typing**:
-  - Format and lint with `ruff` (`uv run ruff check` and `uv run ruff format --check`).
-  - Enforce static type annotations using Pydantic v2 schemas and `pyright` / `ty`.
-- **Agent Security Callbacks**:
-  - Any tool interacting with external data sources, SQL engines, or subprocesses must enforce `shell=False`, sanitize untrusted outputs with XML delimiters, and validate AST/arguments in `before_tool_callback`.
+### Layer 1 — IDP Control Plane (`hikari-platform`)
+- **GitOps & Fleet Orchestration**:
+  - Argo CD App-of-Apps manifests live in `bootstrap/apps/` with explicit `sync-wave` ordering (`-2` through `4`).
+  - Crossplane v2 XRDs and Compositions live in `crossplane/apis/` and `crossplane/compositions/`.
+  - Spoke cluster Day-2 add-ons (Cilium, Kyverno, ESO) are orchestrated by Project Sveltos `ClusterProfile` manifests in `fleet/profiles/`.
+- **Validation**:
+  - Validate YAML syntax and `kubectl kustomize policies/spoke` before pushing.
 
-### TypeScript, CLI & Control Tower UI (`bansho/packages/*`)
-- **Tooling**: Use `npm --prefix packages/<pkg>` (for `bansho` workspaces) as documented in the repository `README.md`.
-- **Quality Gates**:
-  - Strict TypeScript compilation (`tsc --noEmit`).
-  - Formatting and linting via `biome` or `eslint`.
-  - Unit and component tests via `vitest`.
+### Layer 2 — Tenant Workloads & Claims (`hikari-workloads`)
+- **Self-Service Claims (`claims/<env>/*`)**:
+  - Request GCP buckets (`StorageBucket`) or Spoke GKE clusters (`GkeCluster`) via declarative YAML claims.
+- **Workloads (`deploy/clusters/*` & `services/*`)**:
+  - Verify Kustomize overlays with `kubectl kustomize deploy/clusters/<cluster>` and run `npm test` / `npm run build` for modified services.
 
-### Terraform & Google Cloud Infrastructure (`hikari-org-infra`)
-- **Layered State Discipline**:
-  - **Layer 0 (`bootstrap/`)**: Org-level foundation (`Common`, `prd`, `nonprod` folders, Shared VPCs, centralized logging, billing export). High blast radius—review carefully.
-  - **Layer 1 (`apps/<app>/<env>/` & `clients/<client>/<env>/`)**: Isolated state per application or client environment. Consume Layer 0 outputs via `terraform_remote_state`—never hardcode folder or network IDs.
-- **Service Decomposition**: Keep resources separated into one file per domain (`project.tf`, `apis.tf`, `bigquery.tf`, `service_accounts.tf`, `secrets.tf`, `budgets.tf`, `monitoring.tf`).
-- **Mandatory Attribution Labels**: Ensure all resources inherit `default_labels` (`app`, `environment`, `component`, `managed_by = "terraform"`).
-- **Formatting & Lockfiles**: Run `terraform fmt -recursive` before committing. Commit `.terraform.lock.hcl` and `.terraform-version`; never commit `.terraform/`, `.tfstate`, or `tfplan` files.
+### Python & Multi-Agent AI Repositories (`cerebro`, `agentic-harness`, `job-search-agent`)
+- **Environment & Tooling**:
+  - Use [`uv`](https://docs.astral.sh/uv/) (`uv sync`, `uv run pytest`, `uv run ruff check`) for Python repositories and `npm ci --ignore-scripts` for TypeScript/Node.js repositories.
+- **Security Guardrails**:
+  - Sanitize and delimit untrusted external inputs before passing them into LLM prompts, and never store static cloud credentials in repository secrets or `.env` files.
 
 ---
 
-## 4. Branching, Commits & Pull Requests
+## 3. Branching & Conventional Commits
 
-### Branch Naming
-- Feature / Spec branches: `feat/<ticket-or-slug>` or `bansho/feat-<id>`
-- Skill Evolution (AEOS 3) branches: `skill/feat-<id>`
-- Bug fixes: `fix/<ticket-or-slug>`
-- Infrastructure changes: `infra/<layer>-<slug>`
-
-### Conventional Commits
-Use clear, imperative commit messages following Conventional Commits:
-- `feat(scope): add currency validation to checkout service`
-- `fix(guardrails): strip multiline SQL comments before AST check`
-- `infra(clients/tbf): provision nonprod Vertex AI service account and budget`
-- `skill(checkout-api): codify decimal rounding invariant from FEAT-405`
-
-### Pull Request Summary (The Four Findings)
-Every Pull Request should clearly state **The Four Findings**:
-1. **Changed**: Exact files, modules, or Terraform resources modified within scope.
-2. **Improved**: Behavioral specs satisfied, byte/cost savings proved, or test coverage added.
-3. **Degraded**: Any known trade-offs, latency impacts, or follow-up items (`None` if zero regressions).
-4. **Recommended Action**: `Promote / Merge`, `Senior Review Required`, or `Hold` with a clear rollback command (`git revert` or `CASUndoToken`).
+- **Branches**: `feat/<slug>`, `fix/<slug>`, `infra/<layer>-<slug>`, `chore/<slug>`, `security/<slug>`
+- **Commit Messages**:
+  - `feat(crossplane): add XGkeCluster private spoke composition`
+  - `infra(platform/nonprod): enable GKE Hub Workload Identity pool`
+  - `security(ci): pin GitHub Actions to commit SHAs and runner to ubuntu-24.04`
+  - `fix(status-api): enforce read-only root filesystem in deployment spec`
