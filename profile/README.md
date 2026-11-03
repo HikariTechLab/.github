@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/hikari-banner.svg" alt="HikariTechLab — Deterministic Agentic Engineering, Autonomous In-VPC FinOps & Zero-Trust GCP Cloud Foundations" width="100%" />
+  <img src="./assets/hikari-banner.svg" alt="HikariTech — Cloud-Native Internal Developer Platforms, Zero-Trust GCP Foundations & Autonomous Multi-Agent Systems" width="100%" />
 </div>
 
 <br />
@@ -8,91 +8,74 @@
 
 [![Organization](https://img.shields.io/badge/Organization-HikariTechLab-0F172A?style=flat-square&logo=github&logoColor=38BDF8)](https://github.com/HikariTechLab)
 [![Domain](https://img.shields.io/badge/Domain-hikaritech.co-0F172A?style=flat-square&logo=googlecloud&logoColor=34D399)](https://github.com/HikariTechLab/hikari-org-infra)
-[![Agent Platform](https://img.shields.io/badge/Google_Cloud-ADK_2.0_%26_Vertex_AI-0F172A?style=flat-square&logo=googlecloud&logoColor=818CF8)](https://github.com/HikariTechLab/bansho)
-[![Infrastructure](https://img.shields.io/badge/IaC-Terraform_PR--Only-0F172A?style=flat-square&logo=terraform&logoColor=C084FC)](https://github.com/HikariTechLab/hikari-org-infra)
+[![IDP Control Plane](https://img.shields.io/badge/IDP-Argo_CD_%E2%80%A2_Crossplane_v2_%E2%80%A2_Sveltos-0F172A?style=flat-square&logo=kubernetes&logoColor=38BDF8)](https://github.com/HikariTechLab/hikari-platform)
+[![Cloud Foundation](https://img.shields.io/badge/Foundation-Terraform_%26_Shared_VPC-0F172A?style=flat-square&logo=terraform&logoColor=C084FC)](https://github.com/HikariTechLab/hikari-org-infra)
+[![Security Posture](https://img.shields.io/badge/Security-Keyless_OIDC_%26_Kyverno-0F172A?style=flat-square&logo=securityscorecard&logoColor=10B981)](https://github.com/HikariTechLab/.github/blob/main/SECURITY.md)
 
 </div>
 
 ---
 
-## Who We Are
+## About HikariTech
 
-**HikariTechLab (光テックラボ)** is an AI systems and cloud platform engineering organization focused on **Deterministic Agentic Engineering**, **Autonomous In-VPC FinOps**, and **Zero-Trust Google Cloud Foundations**.
+**HikariTech (`hikaritech.co`)** is a Cloud-Native Platform Engineering and AI Systems organization specializing in **Sovereign Google Cloud Foundations**, **Kubernetes Internal Developer Platforms (IDP)**, and **Human-Governed Multi-Agent Engineering**.
 
-We build systems around a single architectural conviction:
-
-> **Probabilistic models belong inside deterministic engineering harnesses.**
->
-> Giving an unconstrained LLM write access to a codebase or cloud environment invites four systemic failure modes: *ambiguous specifications*, *reward hacking (Goodhart's Law)*, *unbounded blast radius*, and *irreversible side effects*. At **HikariTechLab**, deterministic code—not an LLM—owns the state machine, locks behavioral contracts with SHA-256 digests, enforces AST and path-level guardrails, verifies candidates against blind holdout sentinels, and mints atomic rollback tokens before a human ever promotes a change.
+Our engineering philosophy combines two disciplines:
+1. **Zero-Ticket Cloud-Native Platforms**: Infrastructure is a product, not a ticket queue. By separating our Google Cloud organization into three declarative GitOps layers (**L0 Cloud Foundation**, **L1 IDP Control Plane**, and **L2 Tenant Self-Service**), developers provision production-hardened cloud resources and Kubernetes workloads through a single Pull Request—with zero static credentials and automated Day-2 security guardrails.
+2. **Human-Designed Software, Agent-Accelerated Delivery**: Autonomous coding and data agents operate inside deterministic sandboxes, strict supply-chain controls, and human-in-the-loop merge gates.
 
 ---
 
-## Flagship Systems & Repositories
+## Architecture Overview
 
-| Repository | Domain | Architecture & Key Guarantees | Stack |
+<div align="center">
+  <img src="./assets/idp-ecosystem.svg" alt="HikariTech 3-Layer Cloud-Native IDP & AI Agent Ecosystem" width="100%" />
+</div>
+
+---
+
+## Platform & Repository Portfolio
+
+### 1. Cloud-Native Internal Developer Platform (3-Layer Hub-and-Spoke on GCP)
+
+| Layer | Repository | Role & Architectural Guarantees | Core Stack |
 | :--- | :--- | :--- | :--- |
-| **[`bansho`](https://github.com/HikariTechLab/bansho)**<br>*(番所 — The Watchtower)* | **Spec-Driven Agentic Coding Engine** | 3-Loop Self-Improving Flywheel (`bansho-spec` → `bansho-worker` → `bansho-evolve` / AEOS 3), 3-Tier Verification Pyramid (Unit + SHA-256 Locked Gherkin + Blind `@sentinel` suite), Multi-Model FinOps Router, and stateless Compare-and-Swap (CAS) Undo tokens. | Python, Google ADK 2.0, FastAPI, TypeScript CLI, React 19, OpenTelemetry |
-| **[`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp)** | **GCP IaC & BigQuery FinOps CLI** | Fast, offline-first Rust FinOps engine for Terraform, Terragrunt & `plan.json` (automatic SUDs, Spot, live Cloud Monitoring P95 rightsizing) and BigQuery workloads (SQL/SQLX AST scanner & rewriter, `$0` `dryRun` byte proofs, `EXCEPT DISTINCT` equivalence SQL, logical vs. physical storage compression audit, and Edition slot autoscaling simulator). | Rust, Terraform / HCL, BigQuery, Cloud Monitoring, Docker |
-| **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)** | **Zero-Trust GCP Organization Foundation** | Declarative Terraform source of truth for `hikaritech.co`. Layered GCS state (`bootstrap/`, `apps/`, `clients/`), Shared VPC per-subnet isolation (`europe-west1`), default-deny firewall posture, 365-day org audit sink, and strict multi-tenant client isolation. | Terraform, Google Cloud Platform, Cloud Identity, BigQuery Billing |
-| **[`agentic-harness`](https://github.com/HikariTechLab/agentic-harness)** | **Durable Unattended Coding Control Plane** | Orchestrates unattended issue-to-PR coding runs inside ephemeral Docker sandboxes using Temporal workflows, calibrated decision-model diff gating (`fast_track` vs `senior_review`), and durable human-in-the-loop merge gates. | Python 3.13, Temporal, Docker, OpenRouter / Jev, Aider |
-| **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)** | **Autonomous Opportunity Intelligence Agent** | Discovers, deduplicates, sanitizes (`<untrusted_job_description>`), and scores worldwide remote Cloud/SRE/Platform/AI Infrastructure roles on a `0–100` rubric into BigQuery & Looker Studio with hard API quota guardrails. | Python, Google ADK, Vertex AI (`gemini-3.8-flash`), BigQuery |
+| **Layer 0 (L0)** | **[`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra)** | **Enterprise GCP Organization Foundation** — Declarative source of truth for `hikaritech.co`. Isolated state layers (`bootstrap/`, `platform/`, `apps/`, `clients/`), Shared VPC per-subnet lanes (`app`, `platform`, `db`) with default-deny firewalling, 365-day org audit sink, Billing budgets, and GKE Hub bootstrap. | `Terraform 1.9`, `Google Cloud`, `Shared VPC`, `Workload Identity (OIDC)` |
+| **Layer 1 (L1)** | **[`hikari-platform`](https://github.com/HikariTechLab/hikari-platform)** | **IDP Control Plane (Hub GKE)** — Reconciles the platform control plane via **Argo CD** (App-of-Apps + Matrix `ApplicationSet`), exposes self-service GCP APIs via **Crossplane v2** (`XStorageBucket`, `XGkeCluster`), and automates zero-touch Spoke cluster onboarding via **Project Sveltos**, **Kyverno**, and **External Secrets**. | `GKE`, `Argo CD v3.3`, `Crossplane v2`, `Project Sveltos`, `Kyverno`, `ESO` |
+| **Layer 2 (L2)** | **[`hikari-workloads`](https://github.com/HikariTechLab/hikari-workloads)** | **Tenant Workloads & Self-Service Claims** — Single developer interface for requesting cloud infrastructure (`claims/`) and deploying multi-cluster Kubernetes workloads (`deploy/clusters/*`) and hardened Distroless microservices (`services/*`). | `Kustomize`, `Crossplane Claims`, `TypeScript / Node 22`, `Distroless` |
+
+### 2. Autonomous AI & Multi-Agent Engineering Systems
+
+| Repository | Domain | Architecture & Capabilities | Core Stack |
+| :--- | :--- | :--- | :--- |
+| **[`cerebro`](https://github.com/HikariTechLab/cerebro)** | **Multi-Agent Codebase Orchestrator** | Coordinates a mesh of specialized LLM agents (`frontend`, `backend`, `security`, `quality`, `tester`, `ops`) via a Tier-1 orchestrator that plans, parallelizes, and executes code changes with live SSE streaming and human-in-the-loop approval. | `TypeScript`, `Multi-Agent Mesh`, `SSE`, `LLM Orchestration` |
+| **[`agentic-harness`](https://github.com/HikariTechLab/agentic-harness)** | **Durable Unattended Coding Control Plane** | Executes unattended issue-to-PR engineering workflows inside isolated Docker sandboxes using **Temporal**, automated quality/security verification gates, and human merge sign-off. | `Python 3.13`, `Temporal`, `Docker`, `Automated Gating` |
+| **[`job-search-agent`](https://github.com/HikariTechLab/job-search-agent)** | **Opportunity Intelligence Agent** | Discovers, deduplicates, sanitizes, and scores global Cloud, Platform, and AI engineering opportunities into **BigQuery** and **Looker Studio** with strict API budget guardrails. | `Python`, `Google Cloud ADK`, `Vertex AI (Gemini)`, `BigQuery` |
 
 ---
 
-## Our Engineering Architecture & Invariants
+## Core Engineering Standards
 
-```mermaid
-flowchart LR
-    subgraph Spec ["1. Behavioral Contract"]
-        Gherkin["Gherkin Spec (@scope)\nSHA-256 Digest Lock"]
-    end
-
-    subgraph Harness ["2. Deterministic Harness & Guardrails"]
-        Sandbox["Hermetic Git / Docker Sandbox\nbefore_tool_callback & AST Guards"]
-        Pyramid["3-Tier Verification Pyramid\nUnit • Locked Spec • Blind @sentinel"]
-    end
-
-    subgraph Memory ["3. Institutional Memory & Governance"]
-        AEOS["Loop 3 Auto Evolution\nskills/<domain>/SKILL.md"]
-        HITL["Human Control Tower Gate\nFour Findings + CAS Undo Token"]
-    end
-
-    Gherkin --> Sandbox --> Pyramid --> AEOS --> HITL
-```
-
-### 1. The 3-Tier Verification Pyramid & Sentinel Blindness
-We never trust an agent to grade its own homework. Repositories managed by our harnesses separate verification into three distinct tiers:
-- **Tier 1 — Component & Unit (`test_scope`)**: Fast deterministic unit tests, static typing, and syntax validation (`pytest`, `vitest`, `cargo test`, `terraform validate`).
-- **Tier 2 — Locked Behavioral Spec (`tests/specs/**`)**: Formal `Given / When / Then` Gherkin specifications compiled and locked with a **SHA-256 digest** before the worker agent runs.
-- **Tier 3 — Blind Holdout Sentinels (`sentinels/**`)**: Out-of-sample security, billing, SLA, and architectural invariants. Our tool guardrails (`before_tool_callback`) physically block agents from reading `sentinels/**` and redact stack traces on failure—defeating Goodhart's Law by construction.
-
-### 2. Zero-Mutation & Anti-Prompt-Injection Defense
-Every FinOps engine and autonomous agent handling external telemetry or database queries runs behind deterministic security guardrails:
-- **Read-Only HTTP & SQL AST Whitelisting**: In [`greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp), static IaC and SQL/SQLX scans run 100% offline with zero credentials, while live telemetry and `$0` BigQuery dry-run proofs are enforced by a runtime HTTP mutation guard (`GcpAuthClient::ensure_readonly_request`), read-only OAuth scopes, and strict SQL AST validation.
-- **Untrusted Input Delimiting & Session-Poisoning Handshakes**: External inputs (job descriptions, query logs, test outputs) are sanitized, wrapped in explicit XML boundary tags, and checked by `on_user_message_callback` → `before_run_callback` guards before entering model context.
-
-### 3. Self-Improving Domain Memory (AEOS 3) & Stateless Rollback
-- **Evolvable `SKILL.md` Cartridges**: When a candidate passes verification, Loop 3 (`bansho-evolve`) updates *only* `skills/<domain>/SKILL.md` on a dedicated `skill/<ticket_id>` branch—encoding repository-specific lessons so future tasks succeed on the first attempt.
-- **Compare-and-Swap (CAS) Undo**: Every agentic execution mints a stateless `CASUndoToken` (`before_version` → `after_version`) alongside **The Four Findings** (`Changed`, `Improved`, `Degraded`, `Recommended Action`), enabling 1-click atomic rollback if `HEAD == after_version`.
-
-### 4. Declarative, PR-Only Cloud Infrastructure
-In [`hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra), the repository is the sole source of truth for the `hikaritech.co` GCP organization:
-- **Never fix the org in the console**: Drift dies in Git or lives forever. Rollback is `git revert` + `make plan` + `make apply`.
-- **Layered Blast-Radius Isolation**: Layer 0 (`bootstrap/`) governs org folders, Shared VPCs, and centralized 365-day audit logging; Layer 1 (`apps/<app>/<env>` and `clients/<client>/<env>`) isolates every application and client tenant into its own remote state prefix, dedicated service accounts, budgets, and mandatory cost-attribution labels.
+* **100% Declarative & PR-Only Infrastructure**: Manual mutations in the GCP Console or `kubectl edit` in production are prohibited. Every infrastructure layer, Crossplane composition, and workload rollout is versioned in Git and reconciled automatically.
+* **Zero Static Keys (End-to-End Workload Identity)**: Long-lived service account JSON keys are disabled organization-wide (`constraints/iam.disableServiceAccountKeyCreation`). GitHub Actions CI/CD, Argo CD, Crossplane GCP providers, and External Secrets authenticate exclusively via short-lived OIDC tokens.
+* **Supply-Chain Hardening by Default**:
+  * All GitHub Actions workflows pin actions to full **40-character commit SHAs** (`@<sha>`) with `persist-credentials: false` and explicit runner images (`ubuntu-24.04`—never `latest`).
+  * All Spoke clusters enforce **Kyverno** admission policies blocking `:latest` image tags, privileged containers, and root execution (`runAsNonRoot: true`, Google Distroless `nonroot` UID `65532`).
+* **FinOps-Native Lifecycle**: Ephemeral and non-production Spoke GKE clusters are provisioned and paused on demand via Git Pull Requests, eliminating idle compute burn while preserving declarative state.
 
 ---
 
 ## Technology Stack
 
-| Layer | Technologies & Standards |
+| Domain | Technologies & Standards |
 | :--- | :--- |
-| **Agentic & AI Frameworks** | Google Agent Development Kit (**ADK 2.0**), Vertex AI (`gemini-3.8-flash`, `gemini-2.5-pro`), LiteLLM (Claude Sonnet 4, GPT-4.1, OpenRouter), Temporal Workflows |
-| **Cloud & Infrastructure** | Google Cloud Platform (`europe-west1`), Terraform / Terragrunt (Layered GCS State), Shared VPC, Cloud Run, Vertex AI Agent Engine, Secret Manager, Cloud Identity |
-| **Data, FinOps & Observability** | BigQuery (`INFORMATION_SCHEMA`, `$0` Dry-Run & Equivalence Proofs, Edition Slot Simulation), Cloud Monitoring, Looker Studio, OpenTelemetry, JSONL FinOps Ledgers |
-| **Languages & Tooling** | Rust 1.85+ (`cargo`, `clippy`, static `musl` binaries), Python 3.12 / 3.13 (`uv`, `ruff`, `pyright`, `pytest`, `pydantic`), TypeScript (`npm`, Node.js, `@clack/prompts`, `biome`, `vitest`), React 19, Tailwind CSS |
+| **Cloud & Networking** | Google Cloud Platform (`europe-west1`), Shared VPC, Private GKE Clusters (Dataplane V2 / Cilium eBPF), Cloud NAT, Artifact Registry, Secret Manager, Cloud Audit Logs |
+| **IDP & GitOps Control Plane** | Argo CD (`v3.3`), Crossplane (`v2.0` + Upbound GCP Providers), Project Sveltos, Kyverno (`v1.13`), External Secrets Operator (`v0.14`), Kustomize, Helm |
+| **Infrastructure as Code** | Terraform (`1.9.x`), Layered GCS State Backends, Modular Org & Project Blueprints (`bootstrap`, `platform`, `apps`, `clients`) |
+| **AI & Application Runtimes** | Google Cloud ADK, Vertex AI (`Gemini`), Temporal Workflows, TypeScript / Node.js 22 (Google Distroless), Python 3.12 / 3.13 (`uv`, `ruff`, `pytest`), BigQuery |
 
 ---
 
 <div align="center">
-  <sub>Built with discipline by <strong>HikariTechLab (hikaritech.co)</strong> • <a href="https://github.com/HikariTechLab/.github/blob/main/CONTRIBUTING.md">Contributing</a> • <a href="https://github.com/HikariTechLab/.github/blob/main/SECURITY.md">Security Policy</a></sub>
+  <sub><strong>HikariTech (hikaritech.co)</strong> • <a href="https://github.com/HikariTechLab/.github/blob/main/CONTRIBUTING.md">Contributing Guidelines</a> • <a href="https://github.com/HikariTechLab/.github/blob/main/SECURITY.md">Security Policy</a> • <a href="https://github.com/HikariTechLab/.github/blob/main/SUPPORT.md">Support & Routing</a></sub>
 </div>

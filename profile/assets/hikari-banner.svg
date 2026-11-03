@@ -1,30 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" width="100%" height="100%" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 430" width="100%" height="100%" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
   <defs>
     <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#070A12"/>
+      <stop offset="0%" stop-color="#060913"/>
       <stop offset="50%" stop-color="#0F172A"/>
-      <stop offset="100%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#070B14"/>
     </linearGradient>
 
     <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E1B4B" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="0%" stop-color="#1E1B4B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.96"/>
     </linearGradient>
 
     <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0C2E3E" stop-opacity="0.85"/>
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="0%" stop-color="#0C2E44" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.96"/>
     </linearGradient>
 
     <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#064E3B" stop-opacity="0.65"/>
-      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.95"/>
+      <stop offset="0%" stop-color="#064E3B" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.96"/>
     </linearGradient>
 
     <linearGradient id="accentLine" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#38BDF8"/>
-      <stop offset="50%" stop-color="#818CF8"/>
-      <stop offset="100%" stop-color="#34D399"/>
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="50%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#10B981"/>
     </linearGradient>
 
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -32,69 +32,69 @@
     </pattern>
 
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.45"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity="0.5"/>
     </filter>
   </defs>
 
   <!-- Canvas -->
-  <rect width="1280" height="420" rx="16" fill="url(#bgGrad)"/>
-  <rect width="1280" height="420" rx="16" fill="url(#dotGrid)"/>
+  <rect width="1280" height="430" rx="16" fill="url(#bgGrad)"/>
+  <rect width="1280" height="430" rx="16" fill="url(#dotGrid)"/>
   <rect x="0" y="0" width="1280" height="4" rx="2" fill="url(#accentLine)"/>
 
   <!-- Header Section -->
-  <g transform="translate(48, 42)">
-    <rect x="0" y="0" width="168" height="28" rx="14" fill="#0F172A" stroke="#38BDF8" stroke-width="1.2"/>
-    <text x="84" y="18" fill="#38BDF8" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1.2">HIKARITECH.CO</text>
+  <g transform="translate(48, 38)">
+    <rect x="0" y="0" width="240" height="28" rx="14" fill="#0F172A" stroke="#38BDF8" stroke-width="1.2"/>
+    <circle cx="16" cy="14" r="4" fill="#10B981"/>
+    <text x="30" y="18" fill="#38BDF8" font-size="11" font-weight="700" letter-spacing="1.1">HIKARITECH.CO • EUROPE-WEST1</text>
 
-    <text x="0" y="68" fill="#F8FAFC" font-size="36" font-weight="800" letter-spacing="0.3">HikariTechLab <tspan fill="#64748B" font-weight="500" font-size="26">光テックラボ</tspan></text>
-    <text x="0" y="100" fill="#94A3B8" font-size="16" font-weight="500">Deterministic Agentic Engineering • Autonomous In-VPC FinOps • Zero-Trust GCP Cloud Foundations</text>
+    <text x="0" y="68" fill="#F8FAFC" font-size="38" font-weight="800" letter-spacing="0.3">HikariTech <tspan fill="#38BDF8" font-weight="600" font-size="24">Platform &amp; AI Engineering</tspan></text>
+    <text x="0" y="100" fill="#94A3B8" font-size="15.5" font-weight="500">Cloud-Native Internal Developer Platforms (IDP) • Zero-Trust GCP Foundations • Autonomous Multi-Agent Systems</text>
 
     <!-- Status Pill Right -->
-    <g transform="translate(920, 32)">
-      <rect width="264" height="54" rx="10" fill="#1E293B" fill-opacity="0.75" stroke="#334155" stroke-width="1.2"/>
-      <circle cx="22" cy="27" r="5" fill="#34D399"/>
-      <text x="38" y="23" fill="#F8FAFC" font-size="12" font-weight="700">CORE ENGINEERING THESIS</text>
-      <text x="38" y="40" fill="#94A3B8" font-size="11" font-family="monospace">Probabilistic AI × Deterministic Gates</text>
+    <g transform="translate(888, 26)">
+      <rect width="296" height="60" rx="10" fill="#1E293B" fill-opacity="0.82" stroke="#334155" stroke-width="1.2"/>
+      <circle cx="22" cy="22" r="4.5" fill="#10B981"/>
+      <text x="36" y="26" fill="#F8FAFC" font-size="11.5" font-weight="700" letter-spacing="0.5">ENGINEERING OPERATING MODEL</text>
+      <text x="22" y="45" fill="#38BDF8" font-size="11" font-family="monospace">Human-Designed • GitOps • Zero-Trust</text>
     </g>
   </g>
 
-  <!-- Three Pillar Cards -->
-  <!-- Pillar 1: Agentic Harnesses -->
-  <g transform="translate(48, 172)" filter="url(#shadow)">
-    <rect width="376" height="204" rx="12" fill="url(#cardGrad1)" stroke="#6366F1" stroke-width="1.3"/>
-    <text x="22" y="34" fill="#818CF8" font-size="11.5" font-weight="700" letter-spacing="1">01 // AGENTIC ENGINEERING HARNESSES</text>
-    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Spec-Driven &amp; Sentinel-Guarded</text>
-    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Multi-Model ADK 2.0 &amp; Temporal Workflows</text>
-    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• SHA-256 Locked Gherkin Behavioral Contracts</text>
-    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Blind Holdout @sentinel Verification Pyramid</text>
-    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Auto Loop 3 SKILL.md Evolution &amp; CAS Undo</text>
-    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
-    <text x="32" y="183" fill="#818CF8" font-size="11" font-family="monospace">repos: bansho • agentic-harness</text>
+  <!-- Pillar 1: L0 Cloud Foundation -->
+  <g transform="translate(48, 170)" filter="url(#shadow)">
+    <rect width="376" height="218" rx="12" fill="url(#cardGrad1)" stroke="#8B5CF6" stroke-width="1.4"/>
+    <text x="22" y="32" fill="#C084FC" font-size="11" font-weight="700" letter-spacing="1.1">01 // LAYER 0 — CLOUD FOUNDATION</text>
+    <text x="22" y="58" fill="#F8FAFC" font-size="18" font-weight="700">Zero-Trust GCP Organization</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Layered Terraform State (Bootstrap, Platform, Clients)</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Shared VPC Subnet Lanes &amp; Default-Deny Firewall</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• 100% Keyless Workload Identity Federation (OIDC)</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• 365-Day Org Audit Sink &amp; Multi-Tenant Isolation</text>
+    <rect x="22" y="174" width="332" height="26" rx="6" fill="#090D16" stroke="#4C1D95" stroke-width="1"/>
+    <text x="34" y="191" fill="#C084FC" font-size="11" font-family="monospace">repo: HikariTechLab/hikari-org-infra</text>
   </g>
 
-  <!-- Pillar 2: Autonomous FinOps & Verified SQL -->
-  <g transform="translate(452, 172)" filter="url(#shadow)">
-    <rect width="376" height="204" rx="12" fill="url(#cardGrad2)" stroke="#38BDF8" stroke-width="1.3"/>
-    <text x="22" y="34" fill="#38BDF8" font-size="11.5" font-weight="700" letter-spacing="1">02 // CLOUD FINOPS &amp; VERIFIED DATA AI</text>
-    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Zero-Mutation &amp; Provable Savings</text>
-    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Offline-First Rust GCP IaC &amp; BigQuery FinOps CLI</text>
-    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Native BigQuery SQL AST Audit &amp; $0 Dry-Run Proofs</text>
-    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Storage Compression &amp; Edition Slot Simulator</text>
-    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Prompt-Injection &amp; Read-Only HTTP Guards</text>
-    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
-    <text x="32" y="183" fill="#38BDF8" font-size="11" font-family="monospace">repos: greyhound-gcp • job-search-agent</text>
+  <!-- Pillar 2: L1 & L2 Cloud-Native IDP -->
+  <g transform="translate(452, 170)" filter="url(#shadow)">
+    <rect width="376" height="218" rx="12" fill="url(#cardGrad2)" stroke="#38BDF8" stroke-width="1.4"/>
+    <text x="22" y="32" fill="#38BDF8" font-size="11" font-weight="700" letter-spacing="1.1">02 // LAYER 1 &amp; 2 — CLOUD-NATIVE IDP</text>
+    <text x="22" y="58" fill="#F8FAFC" font-size="18" font-weight="700">Hub-and-Spoke GitOps Control Plane</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Argo CD App-of-Apps &amp; Matrix Fleet Delivery</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Crossplane v2 Self-Service GCP &amp; GKE Claims</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Project Sveltos Day-2 Add-On &amp; Policy Automation</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Kyverno Guardrails &amp; Distroless Runtime Standard</text>
+    <rect x="22" y="174" width="332" height="26" rx="6" fill="#090D16" stroke="#0369A1" stroke-width="1"/>
+    <text x="34" y="191" fill="#38BDF8" font-size="11" font-family="monospace">repos: hikari-platform • hikari-workloads</text>
   </g>
 
-  <!-- Pillar 3: Sovereign Cloud & Applied Systems -->
-  <g transform="translate(856, 172)" filter="url(#shadow)">
-    <rect width="376" height="204" rx="12" fill="url(#cardGrad3)" stroke="#34D399" stroke-width="1.3"/>
-    <text x="22" y="34" fill="#34D399" font-size="11.5" font-weight="700" letter-spacing="1">03 // ZERO-TRUST CLOUD FOUNDATIONS</text>
-    <text x="22" y="60" fill="#F8FAFC" font-size="18" font-weight="700">Declarative GCP &amp; Org Governance</text>
-    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Layered Terraform Org Foundation (PR-Only)</text>
-    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Shared VPC Per-Subnet Lanes &amp; Deny-All Posture</text>
-    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Strict Multi-Tenant Client State Isolation</text>
-    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• 365-Day Audit Sink &amp; Keyless OIDC / ADC</text>
-    <rect x="22" y="168" width="332" height="22" rx="6" fill="#0F172A" opacity="0.8"/>
-    <text x="32" y="183" fill="#34D399" font-size="11" font-family="monospace">repo: hikari-org-infra (hikaritech.co)</text>
+  <!-- Pillar 3: Autonomous AI & Multi-Agent Systems -->
+  <g transform="translate(856, 170)" filter="url(#shadow)">
+    <rect width="376" height="218" rx="12" fill="url(#cardGrad3)" stroke="#10B981" stroke-width="1.4"/>
+    <text x="22" y="32" fill="#34D399" font-size="11" font-weight="700" letter-spacing="1.1">03 // APPLIED AI &amp; AGENT ORCHESTRATION</text>
+    <text x="22" y="58" fill="#F8FAFC" font-size="18" font-weight="700">Multi-Agent &amp; Durable Workflows</text>
+    <text x="22" y="86" fill="#CBD5E1" font-size="12.5">• Tier-1 Orchestrated Specialist LLM Agent Mesh</text>
+    <text x="22" y="108" fill="#CBD5E1" font-size="12.5">• Durable Temporal Unattended Coding Sandboxes</text>
+    <text x="22" y="130" fill="#CBD5E1" font-size="12.5">• Google Cloud ADK, Vertex AI &amp; BigQuery Analytics</text>
+    <text x="22" y="152" fill="#CBD5E1" font-size="12.5">• Deterministic Security Gates &amp; Human-in-the-Loop</text>
+    <rect x="22" y="174" width="332" height="26" rx="6" fill="#090D16" stroke="#065F46" stroke-width="1"/>
+    <text x="34" y="191" fill="#34D399" font-size="11" font-family="monospace">repos: cerebro • agentic-harness • job-search</text>
   </g>
 </svg>

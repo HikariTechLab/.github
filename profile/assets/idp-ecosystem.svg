@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 460" width="100%" height="100%" font-family="'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090D16"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" opacity="0.38"/>
+    </pattern>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#38BDF8"/>
+    </marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#A855F7"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#10B981"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="460" rx="14" fill="url(#bg)" stroke="#1E293B" stroke-width="1.5"/>
+  <rect width="1200" height="460" rx="14" fill="url(#grid)"/>
+
+  <!-- Title -->
+  <text x="36" y="38" fill="#F8FAFC" font-size="16" font-weight="800" letter-spacing="0.4">HIKARITECH ARCHITECTURE OVERVIEW — 3-LAYER CLOUD-NATIVE IDP &amp; AI AGENT ECOSYSTEM</text>
+  <text x="36" y="58" fill="#94A3B8" font-size="12">Strict separation of concerns across Cloud Foundation (L0), Kubernetes IDP Control Plane (L1), Tenant Self-Service (L2), and AI Agent Systems</text>
+
+  <!-- L0 Box -->
+  <g transform="translate(36, 82)">
+    <rect width="352" height="250" rx="12" fill="#13112C" stroke="#8B5CF6" stroke-width="1.5"/>
+    <rect x="16" y="16" width="124" height="22" rx="6" fill="#2E1065"/>
+    <text x="78" y="31" fill="#C084FC" font-size="10.5" font-weight="700" text-anchor="middle">LAYER 0 • TERRAFORM</text>
+    <text x="16" y="60" fill="#F8FAFC" font-size="16" font-weight="700">hikari-org-infra</text>
+    <text x="16" y="80" fill="#94A3B8" font-size="11.5">Sovereign GCP Organization Foundation</text>
+
+    <rect x="16" y="96" width="320" height="36" rx="6" fill="#0F172A" stroke="#4C1D95" stroke-width="1"/>
+    <text x="28" y="118" fill="#E2E8F0" font-size="11.5" font-weight="600">Org Hierarchy, 365d Audit Sink &amp; Billing</text>
+
+    <rect x="16" y="140" width="320" height="36" rx="6" fill="#0F172A" stroke="#4C1D95" stroke-width="1"/>
+    <text x="28" y="162" fill="#E2E8F0" font-size="11.5" font-weight="600">Shared VPC Subnet Lanes (app / platform / db)</text>
+
+    <rect x="16" y="184" width="320" height="48" rx="6" fill="#0F172A" stroke="#4C1D95" stroke-width="1"/>
+    <text x="28" y="204" fill="#E2E8F0" font-size="11.5" font-weight="600">GKE Hub Cluster, GAR &amp; Keyless WIF/OIDC</text>
+    <text x="28" y="221" fill="#C084FC" font-size="10.5" font-family="monospace">bootstrap/ • platform/ • apps/ • clients/</text>
+  </g>
+
+  <!-- Arrow L0 -> L1 -->
+  <line x1="388" y1="207" x2="420" y2="207" stroke="#A855F7" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <!-- L1 Box -->
+  <g transform="translate(424, 82)">
+    <rect width="352" height="250" rx="12" fill="#0B2239" stroke="#38BDF8" stroke-width="1.5"/>
+    <rect x="16" y="16" width="136" height="22" rx="6" fill="#082F49"/>
+    <text x="84" y="31" fill="#38BDF8" font-size="10.5" font-weight="700" text-anchor="middle">LAYER 1 • CONTROL PLANE</text>
+    <text x="16" y="60" fill="#F8FAFC" font-size="16" font-weight="700">hikari-platform</text>
+    <text x="16" y="80" fill="#94A3B8" font-size="11.5">Hub-and-Spoke GKE Internal Developer Platform</text>
+
+    <rect x="16" y="96" width="320" height="36" rx="6" fill="#0F172A" stroke="#0369A1" stroke-width="1"/>
+    <text x="28" y="118" fill="#E2E8F0" font-size="11.5" font-weight="600">Argo CD v3.3 • App-of-Apps &amp; Matrix Fleet Sync</text>
+
+    <rect x="16" y="140" width="320" height="36" rx="6" fill="#0F172A" stroke="#0369A1" stroke-width="1"/>
+    <text x="28" y="162" fill="#E2E8F0" font-size="11.5" font-weight="600">Crossplane v2 • XStorageBucket &amp; XGkeCluster</text>
+
+    <rect x="16" y="184" width="320" height="48" rx="6" fill="#0F172A" stroke="#0369A1" stroke-width="1"/>
+    <text x="28" y="204" fill="#E2E8F0" font-size="11.5" font-weight="600">Project Sveltos + Kyverno + External Secrets</text>
+    <text x="28" y="221" fill="#38BDF8" font-size="10.5" font-family="monospace">Zero-touch Spoke add-on &amp; policy enforcement</text>
+  </g>
+
+  <!-- Arrow L1 <-> L2 -->
+  <line x1="776" y1="207" x2="808" y2="207" stroke="#38BDF8" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+  <!-- L2 Box -->
+  <g transform="translate(812, 82)">
+    <rect width="352" height="250" rx="12" fill="#072A24" stroke="#10B981" stroke-width="1.5"/>
+    <rect x="16" y="16" width="144" height="22" rx="6" fill="#064E3B"/>
+    <text x="88" y="31" fill="#34D399" font-size="10.5" font-weight="700" text-anchor="middle">LAYER 2 • SELF-SERVICE</text>
+    <text x="16" y="60" fill="#F8FAFC" font-size="16" font-weight="700">hikari-workloads</text>
+    <text x="16" y="80" fill="#94A3B8" font-size="11.5">Tenant Claims, Services &amp; Multi-Cluster GitOps</text>
+
+    <rect x="16" y="96" width="320" height="36" rx="6" fill="#0F172A" stroke="#065F46" stroke-width="1"/>
+    <text x="28" y="118" fill="#E2E8F0" font-size="11.5" font-weight="600">Declarative Claims (claims/nonprod &amp; prd)</text>
+
+    <rect x="16" y="140" width="320" height="36" rx="6" fill="#0F172A" stroke="#065F46" stroke-width="1"/>
+    <text x="28" y="162" fill="#E2E8F0" font-size="11.5" font-weight="600">Kustomize Fleet Overlays (deploy/clusters/*)</text>
+
+    <rect x="16" y="184" width="320" height="48" rx="6" fill="#0F172A" stroke="#065F46" stroke-width="1"/>
+    <text x="28" y="204" fill="#E2E8F0" font-size="11.5" font-weight="600">Hardened Distroless Microservices (services/*)</text>
+    <text x="28" y="221" fill="#34D399" font-size="10.5" font-family="monospace">nonroot UID 65532 • SHA-pinned OIDC CI/CD</text>
+  </g>
+
+  <!-- Bottom Banner: AI & Agentic Systems -->
+  <g transform="translate(36, 352)">
+    <rect width="1128" height="84" rx="12" fill="#111827" stroke="#334155" stroke-width="1.5"/>
+    <rect x="18" y="16" width="230" height="52" rx="8" fill="#1E1B4B" stroke="#6366F1" stroke-width="1.2"/>
+    <text x="32" y="37" fill="#818CF8" font-size="11" font-weight="700" letter-spacing="0.8">AUTONOMOUS AI &amp; AGENT PLATFORMS</text>
+    <text x="32" y="55" fill="#CBD5E1" font-size="11.5">Human-governed agentic engineering</text>
+
+    <!-- Cerebro -->
+    <rect x="266" y="16" width="272" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="282" y="36" fill="#F8FAFC" font-size="13" font-weight="700">cerebro</text>
+    <text x="282" y="54" fill="#94A3B8" font-size="11">Tier-1 orchestrated multi-agent mesh (SSE)</text>
+
+    <!-- Agentic Harness -->
+    <rect x="554" y="16" width="272" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="570" y="36" fill="#F8FAFC" font-size="13" font-weight="700">agentic-harness</text>
+    <text x="570" y="54" fill="#94A3B8" font-size="11">Temporal unattended coding &amp; merge gates</text>
+
+    <!-- Job Search Agent -->
+    <rect x="842" y="16" width="268" height="52" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+    <text x="858" y="36" fill="#F8FAFC" font-size="13" font-weight="700">job-search-agent</text>
+    <text x="858" y="54" fill="#94A3B8" font-size="11">Google Cloud ADK, Vertex AI &amp; BigQuery</text>
+  </g>
+</svg>

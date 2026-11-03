@@ -1,28 +1,29 @@
-# Support & Issue Routing
+# Support & Repository Routing
 
-Need help working with a **HikariTechLab** project or infrastructure layer? Use the routing guide below so your request reaches the right repository and workflow.
+Need help working with a **HikariTech (`hikaritech.co`)** platform layer, microservice, or AI agent system? Use the routing matrix below so your issue or Pull Request reaches the right repository.
 
 ---
 
-## Where to Open Issues
+## Where to Open Issues & Pull Requests
 
-| Topic / System | Target Repository | What to Include |
+| Platform Layer / System | Target Repository | What to Include |
 | :--- | :--- | :--- |
-| **Bansho Engine, CLI (`./bansho`), or Control Tower UI** | [`HikariTechLab/bansho`](https://github.com/HikariTechLab/bansho/issues) | Ticket ID, selected model, `skill.yaml` scope, and `.bansho/telemetry.jsonl` / Four Findings output. |
-| **GCP IaC FinOps & BigQuery SQL / Slot Optimization** | [`HikariTechLab/greyhound-gcp`](https://github.com/HikariTechLab/greyhound-gcp/issues) | Subcommand (`breakdown`, `diff`, `sql`, `slots`), sanitized `.tf` / `.sql` snippet, and `--dry-run` / `--verify` output. |
-| **Temporal Unattended Coding Control Plane** | [`HikariTechLab/agentic-harness`](https://github.com/HikariTechLab/agentic-harness/issues) | Workflow ID, phase, gate route (`fast_track` vs `senior_review`), and policy rule. |
-| **GCP Organization Foundation & Client Stacks** | [`HikariTechLab/hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra/issues) | Target layer (`bootstrap`, `apps/<app>/<env>`, or `clients/<client>/<env>`) and `make plan` summary. |
-| **Remote Opportunity Discovery & Scoring Agent** | [`HikariTechLab/job-search-agent`](https://github.com/HikariTechLab/job-search-agent/issues) | Search criteria JSON, source connector (`JSearch`, `Greenhouse`, `Lever`), and scoring rubric output. |
+| **L0 — GCP Organization Foundation & Client Stacks** | [`HikariTechLab/hikari-org-infra`](https://github.com/HikariTechLab/hikari-org-infra/issues) | Target state layer (`bootstrap/`, `platform/<env>/`, `apps/<app>/<env>/`, or `clients/<client>/<env>/`) and `terraform plan` output. |
+| **L1 — IDP Control Plane (Argo CD, Crossplane, Sveltos, Kyverno)** | [`HikariTechLab/hikari-platform`](https://github.com/HikariTechLab/hikari-platform/issues) | Affected Argo CD `Application`, Crossplane `Composition`/`XRD`, or Sveltos `ClusterProfile` / Kyverno `ClusterPolicy`. |
+| **L2 — Self-Service Claims & Tenant Workloads** | [`HikariTechLab/hikari-workloads`](https://github.com/HikariTechLab/hikari-workloads/issues) | Claim manifest (`claims/<env>/*`), Kustomize cluster overlay (`deploy/clusters/*`), or service name (`services/*`). |
+| **Multi-Agent Codebase Orchestration (`cerebro`)** | [`HikariTechLab/cerebro`](https://github.com/HikariTechLab/cerebro/issues) | Orchestrator run ID, specialist agent role (`frontend`, `backend`, `security`, `quality`, `tester`, `ops`), and reproduction steps. |
+| **Durable Unattended Coding Control Plane** | [`HikariTechLab/agentic-harness`](https://github.com/HikariTechLab/agentic-harness/issues) | Temporal workflow ID, sandbox execution phase, and verification gate output. |
+| **Opportunity Intelligence Agent (ADK & BigQuery)** | [`HikariTechLab/job-search-agent`](https://github.com/HikariTechLab/job-search-agent/issues) | Connector name, search configuration, and Vertex AI / BigQuery job telemetry. |
 
 ---
 
-## Before Opening an Issue
+## Pre-Flight Checklist Before Opening an Issue
 
-1. **Check the Repository Documentation**:
-   - Read the repository's `README.md`, `docs/ARCHITECTURE.md`, and `AGENTS.md` / `GEMINI.md` / `skills/<domain>/SKILL.md`.
-2. **Run Local Diagnostics**:
-   - For Python/ADK projects: run `uv run pytest tests/unit` and `uv run ruff check`.
-   - For Bansho CLI: run `./bansho status` to verify target repo discovery and model API credentials.
-   - For GCP Terraform (`hikari-org-infra`): verify your ADC identity and quota project (`gcloud auth application-default set-quota-project <cs-host-project-id>`).
-3. **Security & Credentials**:
-   - Never paste raw API keys, service account tokens, `.env` contents, or unredacted customer SQL literals into issues. For security vulnerabilities, follow [`SECURITY.md`](SECURITY.md).
+1. **Check the Repository Architecture Docs**:
+   - Review the target repository's `README.md` and `docs/` directory (including [`docs/PARTNER_WORKSHOP_BLUEPRINT.md`](https://github.com/HikariTechLab/hikari-platform/blob/main/docs/PARTNER_WORKSHOP_BLUEPRINT.md) in `hikari-platform` for end-to-end IDP operations).
+2. **Run Local Validation**:
+   - **Terraform (`L0`)**: `terraform fmt -check -recursive && terraform validate`
+   - **GitOps & Kustomize (`L1` / `L2`)**: `kubectl kustomize <overlay-path>`
+   - **Services & Agents**: `npm test` or `uv run pytest`
+3. **Zero Secrets in Issues**:
+   - Never paste raw tokens, `.env` contents, or unredacted customer data into issues. For security disclosures, follow [`SECURITY.md`](./SECURITY.md).
